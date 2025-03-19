@@ -1,0 +1,60 @@
+Explanation of the Code:
+This Swift code implements a UITableView with two sections: one for vegetarian food items and one for non-vegetarian food items. The table view is set up using a custom table view cell (VegNonvegTableViewCell) that displays food details. Below is a breakdown of each component:
+
+1. ViewController.swift
+This file defines the main ViewController, which manages the table view.
+Properties:
+* @IBOutlet weak var FoodItemTableView: UITableView!
+    * Connects the UITableView from the storyboard to the code.
+* var arrVeg: [Menus]
+    * Stores an array of vegetarian food items.
+* var arrNonveg: [Menus]
+    * Stores an array of non-vegetarian food items.
+Lifecycle Methods:
+* viewDidLoad()
+    * Calls initializeViews() to set up the delegate and data source.
+    * Calls registerCellWithXIB() to register the custom cell.
+Helper Methods:
+* initializeViews()
+    * Assigns ViewController as the delegate and data source of the table view.
+* registerCellWithXIB()
+    * Registers a custom cell (VegNonvegTableViewCell.xib) for the table view.
+
+2. UITableViewDelegate Methods
+* tableView(_:heightForRowAt:)
+    * Sets the row height to 120 for all rows.
+
+3. UITableViewDataSource Methods
+* numberOfSections(in:) -> Int
+    * Returns 2, indicating that the table has two sections (Veg & Non-Veg).
+* tableView(_:titleForHeaderInSection:) -> String?
+    * Sets the section headers: "Vegetarian" for section 0, "Non-Vegetarian" for section 1.
+* tableView(_:numberOfRowsInSection:) -> Int
+    * Returns the count of food items in the corresponding section.
+* tableView(_:cellForRowAt:) -> UITableViewCell
+    * Dequeues a reusable cell of type VegNonvegTableViewCell.
+    * Fetches the food item based on the section and row index.
+    * Assigns values to the cell’s labels and image view.
+
+4. VegNonvegTableViewCell.swift
+Defines a custom UITableViewCell subclass.
+UI Components:
+* foodItemImageView: UIImageView! → Displays the food image.
+* foodItemNameLabel: UILabel! → Displays the food name.
+* foodItemDescriptionLabel: UILabel! → Displays the food description.
+* foodItemPriceLabel: UILabel! → Displays the food price.
+
+5. Menus.swift
+Defines the Menus struct, which represents a food item.
+Properties:
+* foodItemName: String → Name of the dish.
+* foodItemDescription: String → Description of the dish.
+* foodItemPrice: Double → Price of the dish.
+* foodItemImage: UIImage → Image of the dish.
+
+How It Works:
+1. The app loads a UITableView in ViewController.
+2. The table has two sections: Vegetarian and Non-Vegetarian.
+3. Each row displays a food item using VegNonvegTableViewCell.xib.
+4. The Menus struct holds data for each food item.
+5. The delegate and data source methods handle row rendering dynamically.
